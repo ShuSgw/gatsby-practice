@@ -1,13 +1,11 @@
 import React from "react"
-import { Link } from "gatsby"
+import Wrapper from "../components/Wrapper"
 
 const SecondPage = () => (
-  <div>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <Link to="/">Go home</Link>
-  </div>
+  <Wrapper>
+    <h2>2nd Page</h2>
+    <p>Sample content</p>
+  </Wrapper>
 )
 
 export default SecondPage
