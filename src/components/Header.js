@@ -1,18 +1,14 @@
 import React from "react"
 import { Link } from "gatsby"
-
-import "./header.scss"
 import styles from "./header.module.css"
-
-console.log(styles.title)
 
 const Header = () => {
   return (
     <div>
-      <h1>Header with traditional CSS</h1>
-      <div className={styles.title}>
+      <h1 className={styles.title}>Header with traditional CSS</h1>
+      <div>
         <p>Header with css in js</p>
-        <div className={styles.another}>
+        <div>
           <p>Another Scoped styles</p>
         </div>
       </div>

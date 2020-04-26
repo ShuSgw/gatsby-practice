@@ -1,11 +1,3 @@
 .title {
-    background-color: pink;
-}
-
-.title:hover {
-    background-color: green;
-}
-
-.another {
-    background-color: brown;
+    color: red;
 }

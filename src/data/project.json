@@ -1,0 +1,15 @@
+[{
+    "name": "Project 1",
+    "description": "This is was my first project!",
+    "link": {
+        "href": "https://www.gatsbyjs.org/",
+        "text": "Go to Project 1"
+    }
+}, {
+    "name": "Project 2",
+    "description": "This is was my second project!",
+    "link": {
+        "href": "https://www.gatsbyjs.org/",
+        "text": "Go to Project 2"
+    }
+}]
