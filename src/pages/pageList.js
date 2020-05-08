@@ -11,16 +11,9 @@ class PageList extends Component {
   }
 
   render() {
-    const menus = this.props.data.allWordpressMenusMenusItems.edges
-    const obj = menus.reduce((obj, data) => {
-      console.log(data)
-
-      //   obj[data.slug] = data
-      //   return obj
-    }, {})
-    // console.log(obj)
-
-    return <Menus />
+    const menus = this.props.data.allWordpressMenusMenusItems
+    console.log(menus)
+    return <Menus menus={menus} />
   }
 }
 
