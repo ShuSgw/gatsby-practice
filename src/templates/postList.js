@@ -8,7 +8,7 @@ class PostListTemplate extends Component {
   render() {
     console.log(this.props.data)
     const { edges } = this.props.data.allWordpressPost
-    console.log(edges)
+    // console.log(edges)
 
     return (
       <div>
