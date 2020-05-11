@@ -26,8 +26,10 @@ export const pageQuery = graphql`
         node {
           slug
           items {
+            wordpress_id
             title
             url
+            slug
           }
         }
       }

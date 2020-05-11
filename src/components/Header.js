@@ -22,9 +22,6 @@ const Header = () => {
         <li>
           <Link to="/page-3/">Go to page 3</Link>
         </li>
-        <li>
-          <Link to="/pageList/">Page List</Link>
-        </li>
       </ul>
     </div>
   )

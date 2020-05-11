@@ -10,7 +10,7 @@ const IndexPage = () => (
         <Link to="/post/">Post List</Link>
       </li>
       <li>
-        <Link to="/pages/">Page List</Link>
+        <Link to="/pageList/">Page List</Link>
       </li>
     </ul>
   </Wrapper>
