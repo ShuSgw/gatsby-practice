@@ -4,18 +4,30 @@ import { Link } from "gatsby"
 const Menus = props => {
   const { edges } = props.menus
   const allMenu = edges.map((menu, id) => {
-    const slug = menu.node.slug
+    const menuTitleSlug = menu.node.slug
     const itemTitles = menu.node.items.map((item, id) => {
-      console.log(item.wordpress_id)
       return (
         <li key={id}>
-          <Link to={item.slug}>{item.title}</Link>
+          <Link to={item.slug ? `/${item.slug}` : ""}>{item.title}</Link>
+          {item.child_items ? (
+            <ul>
+              {item.child_items.map((navChild, id) => {
+                return (
+                  <li key={id}>
+                    <Link to={navChild.slug ? `/${navChild.slug}` : ""}>
+                      {navChild.title}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          ) : null}
         </li>
       )
     })
     return (
       <div key={id}>
-        <h2>{slug}</h2>
+        <h2>{menuTitleSlug}</h2>
         <ul>{itemTitles}</ul>
       </div>
     )

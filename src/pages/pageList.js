@@ -30,6 +30,11 @@ export const pageQuery = graphql`
             title
             url
             slug
+            post_parent
+            child_items {
+              slug
+              title
+            }
           }
         }
       }
