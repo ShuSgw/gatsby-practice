@@ -24,6 +24,7 @@ exports.createPages = async ({ graphql, actions }) => {
             template
             format
             slug
+            title
           }
         }
       }
@@ -46,7 +47,7 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-  // Create Page posts.
+  // Create Post posts.
   const postTemplate = path.resolve(`./src/templates/post.js`)
   allWordpressPost.edges.forEach(edge => {
     createPage({
@@ -59,9 +60,20 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 
   // Create Posts List.
-  const postListTemplate = path.resolve(`./src/templates/postList.js`)
-  createPage({
-    path: `/post/`,
-    component: slash(postListTemplate),
+  // const postListTemplate = path.resolve(`./src/templates/postList.js`)
+  // createPage({
+  //   path: `/post/`,
+  //   component: slash(postListTemplate),
+  // })
+
+  // page-nation
+  const createPaginatedPages = require("gatsby-paginate")
+
+  createPaginatedPages({
+    edges: allWordpressPost.edges,
+    createPage: createPage,
+    pageTemplate: "src/templates/test.js",
+    pageLength: 5,
+    pathPrefix: "post",
   })
 }

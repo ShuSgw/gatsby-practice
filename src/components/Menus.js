@@ -8,13 +8,17 @@ const Menus = props => {
     const itemTitles = menu.node.items.map((item, id) => {
       return (
         <li key={id}>
-          <Link to={item.slug ? `/${item.slug}` : ""}>{item.title}</Link>
+          <Link to={item.slug !== null ? `/${item.slug}` : "/"}>
+            {item.title}
+          </Link>
           {item.child_items ? (
             <ul>
               {item.child_items.map((navChild, id) => {
                 return (
                   <li key={id}>
-                    <Link to={navChild.slug ? `/${navChild.slug}` : ""}>
+                    <Link
+                      to={navChild.slug !== null ? `/${navChild.slug}` : "/"}
+                    >
                       {navChild.title}
                     </Link>
                   </li>
