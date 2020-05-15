@@ -9,11 +9,13 @@ class PostTemplate extends Component {
     console.log(this.props)
   }
   render() {
-    const { title, content } = this.props.data.wordpressPost
+    const { title, content, acf } = this.props.data.wordpressPost
     return (
       <div>
         <h1>{title}</h1>
         <div dangerouslySetInnerHTML={{ __html: content }} />
+        {console.log(acf)}
+        {acf ? acf.name : "no data"}
       </div>
     )
   }
@@ -29,6 +31,9 @@ export const pageQuery = graphql`
       slug
       id
       date(formatString: "MMMM DD, YYYY")
+      acf {
+        name
+      }
     }
     site {
       id
