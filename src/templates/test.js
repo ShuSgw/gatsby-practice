@@ -1,8 +1,10 @@
 import React from "react"
 import { Link } from "gatsby"
+import Img from "gatsby-image"
 
 const Test = ({ pageContext }) => {
   const { group, index, first, last, pageCount } = pageContext
+
   const previousUrl = index - 1 === 1 ? "/" : (index - 1).toString()
   const nextUrl = (index + 1).toString()
   const NavLink = props => {
@@ -19,6 +21,15 @@ const Test = ({ pageContext }) => {
           <li key={id}>
             <Link key={id} to={`/post/${each.node.id}`}>
               {each.node.title}
+              {each.node.featured_media ? (
+                <Img
+                  fixed={
+                    each.node.featured_media.localFile.childImageSharp.fixed
+                  }
+                />
+              ) : (
+                ""
+              )}
             </Link>
           </li>
         )
@@ -40,3 +51,5 @@ const Test = ({ pageContext }) => {
 }
 
 export default Test
+
+// each.node.featured_media.localFile.childImageSharp.fixed

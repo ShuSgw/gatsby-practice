@@ -25,6 +25,18 @@ exports.createPages = async ({ graphql, actions }) => {
             format
             slug
             title
+            featured_media {
+              localFile {
+                childImageSharp {
+                  fixed(height: 300, width: 300) {
+                    height
+                    width
+                    src
+                    srcSet
+                  }
+                }
+              }
+            }
           }
         }
       }
