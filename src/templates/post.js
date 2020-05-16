@@ -3,13 +3,6 @@ import Img from "gatsby-image"
 // import PropTypes from "prop-types"
 
 class PostTemplate extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-  componentDidMount() {
-    // console.log(this.props)
-  }
   render() {
     const {
       title,
