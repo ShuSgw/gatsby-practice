@@ -40,13 +40,26 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allWordpressCategory {
+        edges {
+          node {
+            id
+            name
+            slug
+          }
+        }
+      }
     }
   `)
 
   if (result.errors) {
     throw new Error(result.errors)
   }
-  const { allWordpressPage, allWordpressPost } = result.data
+  const {
+    allWordpressPage,
+    allWordpressPost,
+    allWordpressCategory,
+  } = result.data
 
   // Create Page pages.
   const pageTemplate = path.resolve(`./src/templates/page.js`)
@@ -63,7 +76,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const postTemplate = path.resolve(`./src/templates/post.js`)
   allWordpressPost.edges.forEach(edge => {
     createPage({
-      path: `/post/${edge.node.id}/`,
+      path: `/post/${edge.node.slug}/`,
       component: slash(postTemplate),
       context: {
         id: edge.node.id,
@@ -71,13 +84,17 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  // Create Posts List.
-  // const postListTemplate = path.resolve(`./src/templates/postList.js`)
-  // createPage({
-  //   path: `/post/`,
-  //   component: slash(postListTemplate),
-  // })
-
+  // category
+  const categoryTemplate = path.resolve(`./src/templates/category.js`)
+  allWordpressCategory.edges.forEach(edge => {
+    createPage({
+      path: `/categories/${edge.node.id}/`,
+      component: slash(categoryTemplate),
+      context: {
+        id: edge.node.id,
+      },
+    })
+  })
   // page-nation
   const createPaginatedPages = require("gatsby-paginate")
 

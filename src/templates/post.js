@@ -9,11 +9,16 @@ class PostTemplate extends Component {
       content,
       acf,
       featured_media,
+      categories,
     } = this.props.data.wordpressPost
 
     return (
       <div>
         <h1>{title}</h1>
+        {categories.map((caetegory, id) => (
+          <p>{caetegory.name}</p>
+        ))}
+        {console.log(categories)}
         <div dangerouslySetInnerHTML={{ __html: content }} />
         <p>{acf ? (acf.name ? acf.name : "no name") : "no data"}</p>
         {featured_media && (
@@ -34,6 +39,10 @@ export const pageQuery = graphql`
       slug
       id
       date(formatString: "MMMM DD, YYYY")
+      categories {
+        id
+        name
+      }
       acf {
         name
       }
