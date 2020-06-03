@@ -16,7 +16,7 @@ class PostTemplate extends Component {
       <div>
         <h1>{title}</h1>
         {categories.map((caetegory, id) => (
-          <p>{caetegory.name}</p>
+          <p key={id}>{caetegory.name}</p>
         ))}
         {console.log(categories)}
         <div dangerouslySetInnerHTML={{ __html: content }} />
