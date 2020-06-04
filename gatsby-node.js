@@ -1,5 +1,8 @@
 const path = require(`path`)
 const { slash } = require(`gatsby-core-utils`)
+const createPaginatedPages = require("gatsby-paginate")
+const _ = require(`lodash`)
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const result = await graphql(`
@@ -76,7 +79,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const postTemplate = path.resolve(`./src/templates/post.js`)
   allWordpressPost.edges.forEach(edge => {
     createPage({
-      path: `/post/${edge.node.slug}/`,
+      path: `/post/${edge.node.id}/`,
       component: slash(postTemplate),
       context: {
         id: edge.node.id,
@@ -85,19 +88,47 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 
   // category
-  const categoryTemplate = path.resolve(`./src/templates/category.js`)
-  allWordpressCategory.edges.forEach(edge => {
-    createPage({
-      path: `/categories/${edge.node.id}/`,
-      component: slash(categoryTemplate),
-      context: {
-        id: edge.node.id,
-      },
-    })
-  })
-  // page-nation
-  const createPaginatedPages = require("gatsby-paginate")
+  // const BlogCategories = allWordpressCategory.edges
+  // let cat = []
+  // const categoryTemplate = path.resolve(`./src/templates/category.js`)
+  // _.each(BlogCategories, edge => {
+  //   if (_.get(edge, "node.name")) {
+  //     cats = cats.concat(edge.node.name)
+  //   }
+  // })
+  // cats = _.uniq(cats)
+  // cats.forEach(category => {
+  //   createPage({
+  //     path: `/categories/${category}/`,
+  //     component: slash(categoryTemplate),
+  //     context: {
+  //       category: category, //<-これがpageContextとしてCategories.jsに渡る、queryで($category: String!)が使えるようになる
+  //     },
+  //   })
+  // })
 
+  // const categoryTemplate = path.resolve(`./src/templates/category.js`)
+  // allWordpressCategory.edges.forEach(edge => {
+  //   createPage({
+  //     path: `/categories/${edge.node.id}/`,
+  //     component: slash(categoryTemplate),
+  //     context: {
+  //       id: edge.node.id,
+  //     },
+  //   })
+  // })
+
+  // category 2
+  // const createCategoryPages = require("gatsby-paginate")
+  // createCategoryPages({
+  //   edges: allWordpressCategory.edges,
+  //   createPage: createPage,
+  //   pageTemplate: "./src/templates/category.js",
+  //   pageLength: 5,
+  //   pathPrefix: "category",
+  // })
+
+  // page-nation
   createPaginatedPages({
     edges: allWordpressPost.edges,
     createPage: createPage,

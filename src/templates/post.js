@@ -1,5 +1,7 @@
 import React, { Component } from "react"
 import Img from "gatsby-image"
+import { Link } from "gatsby"
+
 // import PropTypes from "prop-types"
 
 class PostTemplate extends Component {
@@ -15,8 +17,10 @@ class PostTemplate extends Component {
     return (
       <div>
         <h1>{title}</h1>
-        {categories.map((caetegory, id) => (
-          <p key={id}>{caetegory.name}</p>
+        {categories.map((caetegory, index) => (
+          <Link to={`/categories/${caetegory.id}`} key={index}>
+            {caetegory.name}
+          </Link>
         ))}
         {console.log(categories)}
         <div dangerouslySetInnerHTML={{ __html: content }} />
